@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7cbe6a21db.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="data/recipes.js" type="module"></script>
+    <script src="factories/factory.js"></script>
+    <script src="pages/index.js" type="module"></script>
+    <title>Document</title>
+</head>
+<body>
+    <img src="images/logo.png" alt="Les petits plats" id="logo">
+
+    <main>
+        <form id="form-search">
+            <input type="text" name="search" id="search" placeholder="Rechercher une recette" minlength="3">
+            <button type="submit" id="submit-button" ><i class="fas fa-search"></i></button>
+        </form>
+
+        <div id="to-sort-blocks">
+
+            <div id="ingredients-block" class="to-sort-block">
+                <p id="ingredients-sort">Ingrédients</p>
+                <i class="fas fa-angle-down"></i>
+            </div>
+
+            <div id="appareils-block" class="to-sort-block">
+                <p id="appareils-sort">Appareils</p>
+                <i class="fas fa-angle-down"></i>
+            </div>
+
+            <div id="ustensiles-block" class="to-sort-block">
+                <p id="ustensiles-sort">Ustensiles</p>
+                <i class="fas fa-angle-down"></i>
+            </div>
+        </div>
+
+        <div id="catalogue-recettes">
+        </div>
+    </main>
+    
+</body>
+</html>
