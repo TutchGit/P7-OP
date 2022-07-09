@@ -5,7 +5,7 @@ const recipes = [
         "servings" : 1,
         "ingredients": [
             {
-                "ingredient" : "Lait de coco",
+                "ingredient" : "Lait de coco", //Lait de coco
                 "quantity" : 400,
                 "unit" : "ml"
             },
@@ -14,7 +14,7 @@ const recipes = [
                 "quantity" : 2
             },
             {
-                "ingredient" : "Crème de coco",
+                "ingredient" : "Crème de coco", //Crème de coco
                 "quantity" : 2,
                 "unit" : "cuillères à soupe"
             },
@@ -426,7 +426,7 @@ const recipes = [
         ],
         "time": 40,
         "description": "Éplucher les fruits et les couper en morceaux, les mettre dans une casserolle en ajoutant l'eau et le sucre vanillé. Laisser cuire 15 minutes en remuant régulièrement.",
-        "appliance": "Casserole",
+        "appliance": "Casserolle",
         "ustensils": ["couteau", "économe"]
     },
     {
@@ -462,7 +462,7 @@ const recipes = [
         ],
         "time":40,
         "description":"Cuire les pommes de terre environ 30 minutes. Découper les échalottes finement. Durant la cuisson des pommes de terre. Préparez la vinaigrette avec l'huile d'olive et le vinaigre de cidre. Salez poivrez à discrétion. Dans un saladier, mettre le mâche. Ajouter",
-        "appliance": "Casserole",
+        "appliance": "Casserolle",
         "ustensils":["couteau","saladier","cuillère en bois"]
     },
     {
@@ -503,7 +503,7 @@ const recipes = [
         "time": 100,
         "description":"Mélanger la farine et les oeufs, faire fondre 25 grammes de beurre et ajouter à la pâte. Ajouter du sel. Laisser reposer 1 heure. Faire les galettes et laisser refroidire. Faire chauffer les saucisses avec du beurre et l'oignon. Enrouler les saucisses dans les crêpes avec une partie du fromage. Mettre le reste du fromage à raclette par dessus les crêpes. Passer four pendant 20 minutes",
         "appliance": "Four",
-        "ustensils":["poelle à frire","couteau"]
+        "ustensils":["Poelle à frire","couteau"]
     },
     {
         "id": 15,
@@ -743,8 +743,8 @@ const recipes = [
         ],
         "time": 30,
         "description":"Cuisiner la viande hachée dans une poelle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraiche à la viande hachée. Serivir.",
-        "appliance": "Casserolle.",
-        "ustensils":["Cuillère en bois", "louche", "couteau"]
+        "appliance": "Casserolle",
+        "ustensils":["cuillère en bois", "louche", "couteau"]
     },
     {
         "id": 22,
@@ -806,7 +806,7 @@ const recipes = [
                 "quantity": 3
             },
             {
-                "ingredient": "Crème Fraîche",
+                "ingredient": "Crème Fraiche",
                 "quantity": 20,
                 "unit": "cl"
             },
@@ -817,7 +817,7 @@ const recipes = [
             }
         ],
         "time": 60,
-        "description":"Etaler la pate dans un moule et la piquer.Parsemer de beurre. Faire chauffer les lardon dans une poêle. Battre les oeufs en ajoutant la crème fraîche et le lait. Finalement ajouter les lardons, salez poivrez à votre gout. Verser l'ensemble sur la pâte. Cuire environ 50 minutes.",
+        "description":"Etaler la pate dans un moule et la piquer.Parsemer de beurre. Faire chauffer les lardon dans une poêle. Battre les oeufs en ajoutant la crème fraiche et le lait. Finalement ajouter les lardons, salez poivrez à votre gout. Verser l'ensemble sur la pâte. Cuire environ 50 minutes.",
         "appliance": "Four",
         "ustensils":["moule à gateaux", "rouleau à patisserie", "fouet"]
     },
@@ -940,7 +940,7 @@ const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Crème fraîche",
+                "ingredient": "Crème fraiche",
                 "quantity": 4,
                 "unit": "cuillère à soupe"
             },
@@ -956,7 +956,7 @@ const recipes = [
             }
         ],
         "time": 15,
-        "description":"Faire fondre l'oseille avec du beurre demi sel, ajouter un litre d'eau. Ajouter les vermicelles. Laisser cuire. une foit prêt, sortir du feu et après 5 minutes ajouter le jaune d'oeuf et la crême fraîche",
+        "description":"Faire fondre l'oseille avec du beurre demi sel, ajouter un litre d'eau. Ajouter les vermicelles. Laisser cuire. une foit prêt, sortir du feu et après 5 minutes ajouter le jaune d'oeuf et la crême fraiche",
         "appliance": "Casserolle",
         "ustensils":["couteau","cuillère en bois"]
     },
@@ -985,7 +985,7 @@ const recipes = [
                 "unit":"grammes"
             },
             {
-                "ingredient": "Crême fraîche",
+                "ingredient": "Crême fraiche",
                 "quantity": 10,
                 "unit": "cl"
             }
@@ -1083,7 +1083,7 @@ const recipes = [
         "time": 60,
         "description":"Découper en cubes les carottes et pommes de terre. Faire revenir dans du beurre. Ajouter les lardons, une fois les lardons dorés, ajouter un grand verre d'eau. Ajouter les petit poids et les haricots verts ( tous deux pré cuits ). Ajouter Sel, poivre, thyms et laurier",
         "appliance": "Poële",
-        "ustensils":["Couteau", "économe"]
+        "ustensils":["couteau", "économe"]
     },
     {
         "id": 32,
@@ -1172,7 +1172,7 @@ const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Crème fraîche",
+                "ingredient": "Crème fraiche",
                 "quantity": 20,
                 "unit": "cl"
             },
@@ -1208,7 +1208,7 @@ const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Crème fraîche",
+                "ingredient": "Crème fraiche",
                 "quantity": 2,
                 "unit":"cuillères à soupe"
             },
@@ -1335,7 +1335,7 @@ const recipes = [
         "time": 20,
         "description":"Fouettez les oeufs, le sucre et le lait. tremper les tranches de pain. Le cuire au four pendant environ 10 minutes à 180°. Servir",
         "appliance": "Four",
-        "ustensils":["fouet", "bol","Cuillère à Soupe"]
+        "ustensils":["fouet", "bol","cuillère à Soupe"]
     },
     {
         "id": 39,
@@ -1611,7 +1611,7 @@ const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Crème Fraîche",
+                "ingredient": "Crème fraiche",
                 "quantity": 20,
                 "unit":"cl"
             }

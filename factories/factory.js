@@ -45,14 +45,41 @@ function recipesFactory(recipe) {
     catalogue.appendChild(recette);
 
     recipe.ingredients.forEach(element => {
-        ingredient.setAttribute("class", "ingredient");
-        ingredient.textContent = `${element.ingredient}: ${element.quantity} ${element.unit?element.unit:""}`;
-        ingredients_list.appendChild(ingredient);
-    });
+         ingredient.setAttribute("class", "ingredient");
+         ingredient.textContent = `${element.ingredient}: ${element.quantity} ${element.unit?element.unit:""}`;
+         ingredients_list.appendChild(ingredient);
+     });
 
     // function createIngredientDisplay() {
     //     
     // }
 
     return (catalogue);
+}
+
+function tagFactoryIngredient() {
+
+    const toSortBlocks = document.getElementById("to-sort-blocks");
+    const tagBlocks = document.createElement("div");
+    const tagBlockIngredient = document.createElement("div");
+    const tagIngredient = document.createElement("p");
+    const closeIconTag = document.createElement("i");
+    
+    tagBlocks.setAttribute("id", "tagBlocks");
+    tagBlockIngredient.setAttribute("class", "tagBlockingredient");
+    closeIconTag.setAttribute("class", "closeIconTag");
+
+    recipe.ingredients.forEach(element => {
+        tagIngredient.setAttribute("class", "tagIngredient");
+        tagIngredient.textContent = `${element.ingredient}`;
+    });
+
+    closeIconTag.innerHTML = `<i class="fas fa-times-circle"></i>`;
+
+    tagBlocks.insertBefore(toSortBlocks);
+    tagBlockIngredient.appendChild(tagBlocks);
+    tagIngredient.appendChild(tagBlockIngredient);
+    closeIconTag.appendChild(tagBlockIngredient);
+
+    return(tagBlocks);
 }
