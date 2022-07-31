@@ -6,6 +6,7 @@ let listIngredientTag = [];
 let tagUsed = [];
 let result = recipes;
 let valueSearch = "";
+const tagsOn = document.getElementById("tags-on");
 
 function launchingFactory(recipes){
     document.getElementById("catalogue-recettes").innerHTML = "";
@@ -43,11 +44,31 @@ function searchByMethod(valueSearch){
             }
         });
         launchingFactory(result);
+        listIngredientTag = [];
+        listAppareilsTag = [];
+        listUstensilsTag = [];
+        createArrayAppareils();
+        createArrayIngredient();
+        createArrayUstensils();
     }
 
-    if (currentLength == 0){
-        launchingFactory(recipes);
+    if (currentLength < 3 && tagsOn.childNodes.length >= 1) {
+        result = recipes;
+        searchByTagSelected();
     }
+
+    if (currentLength < 3 && tagsOn.childNodes.length === 0){
+        result = recipes;
+        launchingFactory(recipes);
+        listIngredientTag = [];
+        listAppareilsTag = [];
+        listUstensilsTag = [];
+        createArrayIngredient();
+        createArrayAppareils();
+        createArrayUstensils();
+    }
+
+    displayTags();
 };
 
 document.getElementById("input-ingredients-tag").addEventListener("input", function(event) {
@@ -217,7 +238,6 @@ function deleteTagFromList(tag) {
 };
 
 function deleteTagFromTagSelected(type, tag) {
-    console.log("deleteTagFromTagSelected");
     const tagBlockSelected = document.getElementById(`tag-${tag}`);
     const tagList = document.getElementById(`${type}s-tags`);
     const tagPutBackInList = document.createElement("p");
@@ -241,17 +261,17 @@ function deleteTagFromTagSelected(type, tag) {
         return element.tag !== tag;
     })
 
+    result = recipes;
+    
     searchByTagSelected();
 }
 
 function searchByTagSelected() {
 
-    result = recipes;
+    const currentLength = valueSearch.length;
     
     tagUsed.forEach(tag => {
         let lowerCaseTag = tag.tag.toLowerCase();
-        
-        console.table(result);
 
         result = result.filter(recipe =>{
             
@@ -283,13 +303,18 @@ function searchByTagSelected() {
     })
     launchingFactory(result);
 
-    const tagsOn = document.getElementById("tags-on");
-    if (tagsOn.childNodes.length === 0) {
+    if (tagsOn.childNodes.length === 0 && currentLength >=3) {
+        result = recipes;
         searchByMethod(valueSearch);
+    }
+    
+    if (tagsOn.childNodes.length === 0 && currentLength < 3) {
+        launchingFactory(recipes);
     }
 };
 
 document.querySelectorAll(".fa-angle-down").forEach(element => {
+    closeList(element.id.split("-")[0]);
     element.addEventListener("click", () => {
         openList(element.id.split("-")[0]);
     })
