@@ -1,3 +1,7 @@
+* {
+    font-family: lato, sans-serif;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -34,6 +38,11 @@ main {
     width: 100%;
 }
 
+#search::placeholder {
+    color: #000000;
+    opacity: 0.25;
+}
+
 #submit-button {
     border: none;
     overflow: hidden;
@@ -56,6 +65,49 @@ main {
     outline: none;
 }
 
+/* CSS DES TAGS SELECTIONNE */
+
+#tags-on {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.tag-block {
+    display: flex;
+    align-items: center;
+    height: 37px;
+    margin: 8px 16px 8px 0;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+}
+
+.tag-name {
+    font-size: 18px;
+    padding: 0px 15px;
+}
+
+.tag-block-ingredient {
+    background-color: #3282F7;
+}
+
+.tag-block-appareil {
+    background-color: #68D9A4;
+}
+
+.tag-block-ustensile {
+    background-color: #ED6454;
+}
+
+.delete-tag-button {
+    padding-right: 15px;
+    font-size: 20px;
+}
+
+/* CSS DES LISTES DE TRIE */
+
 #to-sort-blocks {
     display: flex;
     justify-content: flex-start;
@@ -74,39 +126,168 @@ main {
     border-radius: 5px;
 }
 
+.larger {
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px 5px 0 0;
+}
+
+.tag-name-list {
+    font-size: 18px;
+    padding: 0px 15px;
+    margin: 5px 0;
+}
+
+.open {
+    display: grid !important; /* Utilisation de grid pour permettre un grillage de 3 tags en largeur, puis un scroll horizontal ensuite */
+    grid-template-columns: 1fr 1fr 1fr;
+    overflow: auto;
+    max-height: 250px;
+    width: 700px;
+    color: white;
+    border-radius: 0 0 5px 5px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.open::-webkit-scrollbar {
+    display: none;
+}
+
+/* INGREDIENTS CSS */
+
+#ingredients-angle-up {
+    display: none;
+    padding-right: 15px;
+}
+
+#input-ingredients-tag {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    width: 275px;
+    height: 50px;
+    font-size: 1.2em;
+    padding-left: 15px;
+    outline: none;
+}
+
 #ingredients-block {
     background-color: #3282F7;
+}
+
+#ingredients-tags {
+    display: none;
+}
+
+#ingredients-tags.open {
+    background: #3282F7;
+}
+
+/* APPAREIL CSS */
+
+#appareils-angle-up {
+    display: none;
+    padding-right: 15px;
+}
+
+#input-appareils-tag {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    width: 275px;
+    height: 50px;
+    font-size: 1.2em;
+    padding-left: 15px;
+    outline: none;
 }
 
 #appareils-block {
     background-color: #68D9A4;
 }
 
+#appareils-tags {
+    display: none;
+}
+
+#appareils-tags.open {
+    background: #68D9A4;
+}
+
+/* USTENSIL CSS */
+
+#ustensiles-angle-up {
+    display: none;
+    padding-right: 15px;
+}
+
+#input-ustensiles-tag {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    width: 275px;
+    height: 50px;
+    font-size: 1.2em;
+    padding-left: 15px;
+    outline: none;
+}
+
 #ustensiles-block {
     background-color: #ED6454;
 }
 
+#ustensiles-tags {
+    display: none;
+}
+
+#ustensiles-tags.open {
+    background: #ED6454;
+}
+
+::placeholder {
+    color: white;
+    opacity: 0.75;
+}
+
+.tag {
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.tag-block-ingredients {
+    background: #3282F7;
+}
+
 #catalogue-recettes {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .recette {
-    width: 380px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
     height: auto;
-    margin: 25px;
+    margin: 25px 0;
 }
 
 .image-recette {
     background-color: #C7BEBE;
     width: 100%;
     height: 178px;
+    border-radius: 5px 5px 0 0;
 }
 
 .data-recette {
     background-color: #E7E7E7;
-    height: 150px;
+    height: 200px;
+    border-radius: 0 0 5px 5px;
 }
 
 .title {
@@ -115,8 +296,15 @@ main {
 
 .primary-data {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.title-recette {
+    margin-bottom: 0;
 }
 
 .time-recette {
@@ -125,23 +313,53 @@ main {
     align-items: center;
 }
 
+.clock {
+    margin-bottom: 0;
+}
+
 .time {
     margin-left: 10px;
+    margin-bottom: 0;
 }
 
 .secondary-data {
     display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 0 15px;
+}
+
+.ingredients-list {
+    padding: 0;
+}
+
+.ingredient {
+    display: flex;
+    margin: 0;
+}
+
+.ingredient-asked {
+    margin: 0;
+    font-weight: bold;
+}
+
+.ingredient-quantity {
+    margin: 0;
 }
 
 ul {
     list-style: none;
-    
+    font-size: 12px;
 }
 
 .instruction {
-    width: 171px;
-    height: auto;
+    width: 150px;
+    font-size: 12px;
+    line-height: 12px;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
+    white-space: normal;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
 }

@@ -9,6 +9,7 @@
     <script src="data/recipes.js" type="module"></script>
     <script src="factories/factory.js"></script>
     <script src="pages/index.js" type="module"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/ccw3iaj.css">
     <title>Document</title>
 </head>
 <body>
@@ -20,22 +21,38 @@
             <button type="submit" id="submit-button" ><i class="fas fa-search"></i></button>
         </form>
 
+        <div id="tags-on"></div>
+        
         <div id="to-sort-blocks">
             
-            <div id="ingredients-block" class="to-sort-block">
-                <a href=""></a>
-                <p id="ingredients-sort">Ingrédients</p></a>
-                <i class="fas fa-angle-down"></i>
+            <div class="block-and-list">
+                <div id="ingredients-block" class="to-sort-block">
+                    <p id="ingredients-sort">Ingrédients</p>
+                    <i id="ingredients-angle-down" class="fas fa-angle-down"></i>
+                    <input id="input-ingredients-tag" name="input-ingredients-tag" type="text" placeholder="Rechercher un ingrédient">
+                    <i id="ingredients-angle-up" class="fas fa-angle-up"></i>
+                </div>
+                <div id="ingredients-tags" class="tags-list"></div>
             </div>
 
-            <div id="appareils-block" class="to-sort-block">
-                <p id="appareils-sort">Appareils</p>
-                <i class="fas fa-angle-down"></i>
+            <div class="block-and-list">
+                <div id="appareils-block" class="to-sort-block">
+                    <p id="appareils-sort">Appareils</p>
+                    <i id="appareils-angle-down" class="fas fa-angle-down"></i>
+                    <input id="input-appareils-tag" name="input-appareils-tag" type="text" placeholder="Rechercher un appareil">
+                    <i id="appareils-angle-up" class="fas fa-angle-up"></i>
+                </div>
+                <div id="appareils-tags" class="tags-list"></div>
             </div>
 
-            <div id="ustensiles-block" class="to-sort-block">
-                <p id="ustensiles-sort">Ustensiles</p>
-                <i class="fas fa-angle-down"></i>
+            <div class="block-and-list">
+                <div id="ustensiles-block" class="to-sort-block">
+                    <p id="ustensiles-sort">Ustensiles</p>
+                    <i id="ustensiles-angle-down" class="fas fa-angle-down"></i>
+                    <input id="input-ustensiles-tag"name="input-ustensiles-tag" type="text" placeholder="Rechercher un ustensile">
+                    <i id="ustensiles-angle-up" class="fas fa-angle-up"></i>  
+                </div>
+                <div id="ustensiles-tags" class="tags-list"></div>
             </div>
         </div>
 
