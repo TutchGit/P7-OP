@@ -394,6 +394,10 @@ ul {
         align-items: center;
     }
 
+    .to-sort-block {
+        margin: 0;
+    }
+
     .block-and-list {
         margin-bottom: 20px;
     }
