@@ -28,7 +28,7 @@ function searchByMethod(valueSearch){
 
     if(currentLength >= 3){
 
-        result = recipes.filter(recipe =>{
+        result = result.filter(recipe =>{
             if(recipe.name.toLowerCase().includes(valueSearch) || recipe.description.toLowerCase().includes(valueSearch)) {
                 return recipe;
             }
@@ -134,7 +134,13 @@ function createArrayIngredient() {
 
     result.forEach(recipe => {
         recipe.ingredients.forEach(element =>{
-            if (!listIngredientTag.includes(element.ingredient)) {
+            if (
+                !listIngredientTag.includes(element.ingredient)
+                && tagUsed.find(tag => {
+                    return tag.tag == element.ingredient
+                }) == undefined
+            ) 
+            {
                 listIngredientTag.push(element.ingredient);
             }
         })
@@ -145,7 +151,13 @@ function createArrayUstensils() {
 
     result.forEach(recipe =>{
         recipe.ustensils.forEach(ustensil =>{
-            if (!listUstensilsTag.includes(ustensil)) {
+            if (
+                !listUstensilsTag.includes(ustensil)
+                && tagUsed.find(tag => {
+                    return tag.tag == ustensil
+                }) == undefined
+            ) 
+            {
                 listUstensilsTag.push(ustensil)
             }
         })
@@ -155,7 +167,13 @@ function createArrayUstensils() {
 function createArrayAppareils() {
 
     result.forEach(recipe =>{
-        if (!listAppareilsTag.includes(recipe.appliance)) {
+        if (
+            !listAppareilsTag.includes(recipe.appliance)
+            && tagUsed.find(tag => {
+                return tag.tag == recipe.appliance
+            }) == undefined
+        ) 
+        {
             listAppareilsTag.push(recipe.appliance);
         }
     })
@@ -222,28 +240,6 @@ function addTag(type, tag){
 
      searchByTagSelected();
 
-     deleteTagFromList(tag);
-};
-
-let tagBlockSelected = [];
-
-function deleteTagFromList(tag) {
-    const AllTagBlock = document.querySelectorAll(`[data-id]`);
-    const tagBlock = document.querySelector(`[data-id="${tag}"]`)
-    
-    tagBlockSelected.push(tagBlock);
-    console.log(tagBlockSelected);
-
-    tagBlockSelected.forEach(tagBlock => {
-        AllTagBlock.forEach(element => {
-            console.log(tagBlock.innerText)
-            if (element.innerText == tagBlock.innerText) {
-                console.log("go")
-                tagBlock.remove();
-            }
-        })
-    })
-    // tagBlock.remove();
 };
 
 function deleteTagFromTagSelected(type, tag) {
@@ -328,8 +324,11 @@ function searchByTagSelected() {
 };
 
 document.querySelectorAll(".fa-angle-down").forEach(element => {
-    closeList(element.id.split("-")[0]);
+    console.log(element.id.split("-")[0])
     element.addEventListener("click", () => {
+        closeList("ingredients");
+        closeList("appareils");
+        closeList("ustensiles");
         openList(element.id.split("-")[0]);
     })
 });

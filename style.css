@@ -363,3 +363,48 @@ ul {
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
 }
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    #to-sort-blocks {
+        justify-content: center;
+    }
+
+    .to-sort-block {
+        margin: 0 15px;
+    }
+
+    .open {
+        width: 300px;
+        grid-template-columns: 1fr 1fr;
+        margin: 0 15px;
+    }
+
+    .larger {
+        width: 300px;
+    }
+
+    #catalogue-recettes {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    #to-sort-blocks {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .block-and-list {
+        margin-bottom: 20px;
+    }
+
+    .open {
+        width: 300px;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .larger {
+        width: 300px;
+        margin: 0;
+    }
+}
