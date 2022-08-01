@@ -324,7 +324,6 @@ function searchByTagSelected() {
 };
 
 document.querySelectorAll(".fa-angle-down").forEach(element => {
-    console.log(element.id.split("-")[0])
     element.addEventListener("click", () => {
         closeList("ingredients");
         closeList("appareils");
