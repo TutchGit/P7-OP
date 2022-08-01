@@ -10,7 +10,6 @@ const tagsOn = document.getElementById("tags-on");
 
 function launchingFactory(recipes){
     document.getElementById("catalogue-recettes").innerHTML = "";
-    console.table(recipes);
     for(let i=0; i<recipes.length; i++) {
         recipesFactory(recipes[i])
     }
@@ -33,39 +32,38 @@ function searchByMethod(valueSearch){
             if(recipe.name.toLowerCase().includes(valueSearch) || recipe.description.toLowerCase().includes(valueSearch)) {
                 return recipe;
             }
-            let ingredientFounded = false;
+            let matchFounded = false;
             recipe.ingredients.forEach(element => {
                 if(element.ingredient.toLowerCase().includes(valueSearch)) {
-                    ingredientFounded = true;
+                    matchFounded = true;
                 }
             })
-            if (ingredientFounded) {
+            if (recipe.appliance.toLowerCase().includes(valueSearch)) {
+                matchFounded = true;
+            }
+            recipe.ustensils.forEach(ustensil => {
+                if(ustensil.toLowerCase().includes(valueSearch)) {
+                    matchFounded = true;
+                }
+            })
+            if (matchFounded) {
                 return recipe;
             }
         });
         launchingFactory(result);
-        listIngredientTag = [];
-        listAppareilsTag = [];
-        listUstensilsTag = [];
-        createArrayAppareils();
-        createArrayIngredient();
-        createArrayUstensils();
+        resetTagLists();
     }
 
     if (currentLength < 3 && tagsOn.childNodes.length >= 1) {
         result = recipes;
         searchByTagSelected();
+        resetTagLists();
     }
 
     if (currentLength < 3 && tagsOn.childNodes.length === 0){
         result = recipes;
         launchingFactory(recipes);
-        listIngredientTag = [];
-        listAppareilsTag = [];
-        listUstensilsTag = [];
-        createArrayIngredient();
-        createArrayAppareils();
-        createArrayUstensils();
+        resetTagLists();
     }
 
     displayTags();
@@ -127,12 +125,7 @@ function searchTags(type, valueTagSearch) {
     }
 
     if (currentLength < 3) {
-        listIngredientTag = [];
-        listAppareilsTag = [];
-        listUstensilsTag = [];
-        createArrayIngredient();
-        createArrayAppareils();
-        createArrayUstensils();
+        resetTagLists();
     }
     displayTags();
 }
@@ -172,6 +165,7 @@ function displayTags() {
     const ingredientHTML = document.getElementById("ingredients-tags");
     const appareilHTML = document.getElementById("appareils-tags");
     const ustensileHTML = document.getElementById("ustensiles-tags");
+
     ingredientHTML.innerHTML = "";
     appareilHTML.innerHTML = "";
     ustensileHTML.innerHTML = "";
@@ -217,8 +211,6 @@ function addTag(type, tag){
      tagBlock.appendChild(deleteTag);
      tagsOn.appendChild(tagBlock);
 
-     deleteTagFromList(tag);
-
      document.getElementById(`delete-tag-${tag}`).addEventListener("click", () => {
         deleteTagFromTagSelected(type, tag);
      })
@@ -229,12 +221,29 @@ function addTag(type, tag){
      });
 
      searchByTagSelected();
+
+     deleteTagFromList(tag);
 };
 
-function deleteTagFromList(tag) {
-    const tagBlock = document.querySelector(`[data-id="${tag}"]`);
+let tagBlockSelected = [];
 
-    tagBlock.remove();
+function deleteTagFromList(tag) {
+    const AllTagBlock = document.querySelectorAll(`[data-id]`);
+    const tagBlock = document.querySelector(`[data-id="${tag}"]`)
+    
+    tagBlockSelected.push(tagBlock);
+    console.log(tagBlockSelected);
+
+    tagBlockSelected.forEach(tagBlock => {
+        AllTagBlock.forEach(element => {
+            console.log(tagBlock.innerText)
+            if (element.innerText == tagBlock.innerText) {
+                console.log("go")
+                tagBlock.remove();
+            }
+        })
+    })
+    // tagBlock.remove();
 };
 
 function deleteTagFromTagSelected(type, tag) {
@@ -262,7 +271,9 @@ function deleteTagFromTagSelected(type, tag) {
     })
 
     result = recipes;
+    resetTagLists();
     
+    searchByMethod(valueSearch);
     searchByTagSelected();
 }
 
@@ -302,6 +313,7 @@ function searchByTagSelected() {
         });
     })
     launchingFactory(result);
+    resetTagLists();
 
     if (tagsOn.childNodes.length === 0 && currentLength >=3) {
         result = recipes;
@@ -311,6 +323,8 @@ function searchByTagSelected() {
     if (tagsOn.childNodes.length === 0 && currentLength < 3) {
         launchingFactory(recipes);
     }
+
+    displayTags();
 };
 
 document.querySelectorAll(".fa-angle-down").forEach(element => {
@@ -325,6 +339,15 @@ document.querySelectorAll(".fa-angle-up").forEach(element => {
         closeList(element.id.split("-")[0]);
     })
 });
+
+function resetTagLists () {
+    listIngredientTag = [];
+    listAppareilsTag = [];
+    listUstensilsTag = [];
+    createArrayIngredient();
+    createArrayAppareils();
+    createArrayUstensils();
+}
 
 function openList(type) {
     document.getElementById(`${type}-tags`).classList.add("open");
