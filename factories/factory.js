@@ -1,4 +1,4 @@
-function recipesFactory(recipe) {
+function recipesFactory(recipe) {                                               /* Fonction permettant l'affichage de chaque recette sur la page */
 
     const catalogue = document.getElementById("catalogue-recettes");
     const recette = document.createElement("div");
@@ -62,31 +62,4 @@ function recipesFactory(recipe) {
      });
 
     return (catalogue);
-}
-
-function tagFactoryIngredient() {
-
-    const toSortBlocks = document.getElementById("to-sort-blocks");
-    const tagBlocks = document.createElement("div");
-    const tagBlockIngredient = document.createElement("div");
-    const tagIngredient = document.createElement("p");
-    const closeIconTag = document.createElement("i");
-    
-    tagBlocks.setAttribute("id", "tagBlocks");
-    tagBlockIngredient.setAttribute("class", "tagBlockingredient");
-    closeIconTag.setAttribute("class", "closeIconTag");
-
-    recipe.ingredients.forEach(element => {
-        tagIngredient.setAttribute("class", "tagIngredient");
-        tagIngredient.textContent = `${element.ingredient}`;
-    });
-
-    closeIconTag.innerHTML = `<i class="fas fa-times-circle"></i>`;
-
-    tagBlocks.insertBefore(toSortBlocks);
-    tagBlockIngredient.appendChild(tagBlocks);
-    tagIngredient.appendChild(tagBlockIngredient);
-    closeIconTag.appendChild(tagBlockIngredient);
-
-    return(tagBlocks);
 }
