@@ -10,7 +10,6 @@ const tagsOn = document.getElementById("tags-on");                              
 
 function launchingFactory(recipes){                                                 /* Boucle sur chaque recipes (parametre) pour affichage les differentes recettes */
     document.getElementById("catalogue-recettes").innerHTML = "";
-    document.getElementById("recipe-not-found").style.display = "none";
     for(let i=0; i<recipes.length; i++) {
         recipesFactory(recipes[i])
     }
@@ -28,7 +27,6 @@ function searchByMethod(valueSearch){                                           
     const currentLength = valueSearch.length;
     
     if(currentLength >= 3){
-        console.log("more than 3")
         let result = [];
 
         for (let i = 0; i<recipes.length; i++) {
@@ -52,37 +50,37 @@ function searchByMethod(valueSearch){                                           
                 const ingredient = recipe.ingredients[i].ingredient.toLowerCase();
                 const ingredientNoAccent = recipe.ingredients[i].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 
-                if (ingredient.includes(valueSearch) 
-                || ingredientNoAccent.includes(valueSearch))
-                 {
-                   result.push(recipe);
+                    if (ingredient.includes(valueSearch) 
+                    || ingredientNoAccent.includes(valueSearch))
+                    {
+                    result.push(recipe);
+                    matchFounded = true;
+                    }
                 }
+            };
+
+            if (!matchFounded || result.length <=1) {
+                document.getElementById("recipe-not-found").style.display = "flex";
+            } else if (matchFounded) {
+                document.getElementById("recipe-not-found").style.display = "none";
             }
-        };
         launchingFactory(result);                                                   /* Lance la factory avec uniquement les recettes disponibles dans result */
         resetTagLists();
+        }
     }
 
     if (currentLength < 3 && tagsOn.childNodes.length >= 1) {                       /* Permet de ne prendre en compte QUE la fonction recherche par tag */
-    console.log("test")
-        result = recipes;
         searchByTagSelected();
         resetTagLists();
     }
 
-    if (currentLength < 3 && tagsOn.childNodes.length === 0){   
-        console.log("launching")                    /* Permet de reset l'affichage de toute les recettes disponibles */
+    if (currentLength < 3 && tagsOn.childNodes.length === 0){                      /* Permet de reset l'affichage de toute les recettes disponibles */
         launchingFactory(recipes);
         resetTagLists();
+        document.getElementById("recipe-not-found").style.display = "none";
     }
 
-    if (result.length == 0) {
-        result = recipes;
-        document.getElementById("recipe-not-found").style.display = "flex";
-    }
-    
     displayTags();
-}
 };
 
 document.getElementById("input-ingredients-tag").addEventListener("input", function(event) {
