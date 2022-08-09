@@ -1,0 +1,5 @@
+refaire la fiche d'investigation
+les accents                                 DONE
+seulement ingredient, nom et description    DONE
+message erreur lorsque resultat vide        DONE
+css => 3 recettes par ligne                 DONE

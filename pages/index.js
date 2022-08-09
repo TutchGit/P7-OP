@@ -10,6 +10,7 @@ const tagsOn = document.getElementById("tags-on");                              
 
 function launchingFactory(recipes){                                                 /* Boucle sur chaque recipes (parametre) pour affichage les differentes recettes */
     document.getElementById("catalogue-recettes").innerHTML = "";
+    document.getElementById("recipe-not-found").style.display = "none";
     for(let i=0; i<recipes.length; i++) {
         recipesFactory(recipes[i])
     }
@@ -25,27 +26,31 @@ document.getElementById("form-search").addEventListener("input", function(event)
 function searchByMethod(valueSearch){                                               /* Fonction de recherche principale */
 
     const currentLength = valueSearch.length;
-
+    
     if(currentLength >= 3){
 
         result = result.filter(recipe =>{                                           /* Check la recherche par rapport au nom ou description */
-            if(recipe.name.toLowerCase().includes(valueSearch) || recipe.description.toLowerCase().includes(valueSearch)) {         
+            if(recipe.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(valueSearch) 
+            || recipe.name.toLowerCase().includes(valueSearch) 
+            || recipe.description.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(valueSearch) 
+            || recipe.description.toLowerCase().includes(valueSearch)) {
                 return recipe;
             }
             let matchFounded = false;                                               /* Passer par un boleen permet d'éviter les duplicatas de recette si y a plusieurs correspondances */
             recipe.ingredients.forEach(element => {                                 /* Check la recherche par rapport aux ingrédients */
-                if(element.ingredient.toLowerCase().includes(valueSearch)) {
+                if(element.ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(valueSearch) 
+                || element.ingredient.toLowerCase().includes(valueSearch)) {
                     matchFounded = true;
                 }
             })
-            if (recipe.appliance.toLowerCase().includes(valueSearch)) {             /* Check la recherche par rapport aux appareils */
-                matchFounded = true;
-            }
-            recipe.ustensils.forEach(ustensil => {                                  /* Check la recherche par rapport aux ustensile */
-                if(ustensil.toLowerCase().includes(valueSearch)) {
-                    matchFounded = true;
-                }
-            })
+            // if (recipe.appliance.toLowerCase().includes(valueSearch)) {             /* Check la recherche par rapport aux appareils */
+            //     matchFounded = true;
+            // }
+            // recipe.ustensils.forEach(ustensil => {                                  /* Check la recherche par rapport aux ustensile */
+            //     if(ustensil.toLowerCase().includes(valueSearch)) {
+            //         matchFounded = true;
+            //     }
+            // })
             if (matchFounded) {                                                     /* Rajoute la recette à result si il y a correspondance */
                 return recipe;
             }
@@ -66,6 +71,11 @@ function searchByMethod(valueSearch){                                           
         resetTagLists();
     }
 
+    if (result.length == 0) {
+        result = recipes;
+        document.getElementById("recipe-not-found").style.display = "flex";
+    }
+    
     displayTags();
 };
 
