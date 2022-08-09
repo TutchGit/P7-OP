@@ -28,45 +28,50 @@ function searchByMethod(valueSearch){                                           
     const currentLength = valueSearch.length;
     
     if(currentLength >= 3){
+        console.log("more than 3")
+        let result = [];
 
-        result = result.filter(recipe =>{                                           /* Check la recherche par rapport au nom ou description */
-            if(recipe.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(valueSearch) 
-            || recipe.name.toLowerCase().includes(valueSearch) 
-            || recipe.description.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(valueSearch) 
-            || recipe.description.toLowerCase().includes(valueSearch)) {
-                return recipe;
+        for (let i = 0; i<recipes.length; i++) {
+            const recipe = recipes[i];
+            const name = recipe.name.toLowerCase();
+            const description = recipe.description.toLowerCase();
+            const nameNoAccent = recipe.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const descriptionNoAccent = recipe.description.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (name.includes(valueSearch) 
+            || description.includes(valueSearch) 
+            || nameNoAccent.includes(valueSearch) 
+            || descriptionNoAccent.includes(valueSearch))
+             {
+                    result.push(recipe);
             }
-            let matchFounded = false;                                               /* Passer par un boleen permet d'éviter les duplicatas de recette si y a plusieurs correspondances */
-            recipe.ingredients.forEach(element => {                                 /* Check la recherche par rapport aux ingrédients */
-                if(element.ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(valueSearch) 
-                || element.ingredient.toLowerCase().includes(valueSearch)) {
-                    matchFounded = true;
+            let matchFounded = false;
+
+            if(!matchFounded) {
+                for (let i = 0; i<recipe.ingredients.length; i++) {
+                const ingredient = recipe.ingredients[i].ingredient.toLowerCase();
+                const ingredientNoAccent = recipe.ingredients[i].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                
+                if (ingredient.includes(valueSearch) 
+                || ingredientNoAccent.includes(valueSearch))
+                 {
+                   result.push(recipe);
                 }
-            })
-            // if (recipe.appliance.toLowerCase().includes(valueSearch)) {             /* Check la recherche par rapport aux appareils */
-            //     matchFounded = true;
-            // }
-            // recipe.ustensils.forEach(ustensil => {                                  /* Check la recherche par rapport aux ustensile */
-            //     if(ustensil.toLowerCase().includes(valueSearch)) {
-            //         matchFounded = true;
-            //     }
-            // })
-            if (matchFounded) {                                                     /* Rajoute la recette à result si il y a correspondance */
-                return recipe;
             }
-        });
+        };
         launchingFactory(result);                                                   /* Lance la factory avec uniquement les recettes disponibles dans result */
         resetTagLists();
     }
 
     if (currentLength < 3 && tagsOn.childNodes.length >= 1) {                       /* Permet de ne prendre en compte QUE la fonction recherche par tag */
+    console.log("test")
         result = recipes;
         searchByTagSelected();
         resetTagLists();
     }
 
-    if (currentLength < 3 && tagsOn.childNodes.length === 0){                       /* Permet de reset l'affichage de toute les recettes disponibles */
-        result = recipes;
+    if (currentLength < 3 && tagsOn.childNodes.length === 0){   
+        console.log("launching")                    /* Permet de reset l'affichage de toute les recettes disponibles */
         launchingFactory(recipes);
         resetTagLists();
     }
@@ -77,6 +82,7 @@ function searchByMethod(valueSearch){                                           
     }
     
     displayTags();
+}
 };
 
 document.getElementById("input-ingredients-tag").addEventListener("input", function(event) {
