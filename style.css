@@ -456,6 +456,10 @@ ul {
         margin-bottom: 20px;
     }
 
+    .recette {
+        width: 100%;
+    }
+
     .data-recette {
         height: auto;
     }

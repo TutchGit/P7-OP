@@ -59,9 +59,10 @@ function searchByMethod(valueSearch){                                           
                 }
             };
 
-            if (!matchFounded || result.length == 0) {
+            if (result.length == 0) {
                 document.getElementById("recipe-not-found").style.display = "flex";
-            } else if (matchFounded) {
+            } else {
+                console.log("supprime erreur")
                 document.getElementById("recipe-not-found").style.display = "none";
             }
         launchingFactory(result);                                                   /* Lance la factory avec uniquement les recettes disponibles dans result */
@@ -75,6 +76,7 @@ function searchByMethod(valueSearch){                                           
     }
 
     if (currentLength < 3 && tagsOn.childNodes.length === 0){                      /* Permet de reset l'affichage de toute les recettes disponibles */
+        document.getElementById("recipe-not-found").style.display = "none";
         launchingFactory(recipes);
         resetTagLists();
     }
@@ -90,7 +92,6 @@ document.getElementById("input-ingredients-tag").addEventListener("input", funct
 });
                                                                                                         /* Lance la fonction search tag en fonction de l'element selectionné.*/
 document.getElementById("input-appareils-tag").addEventListener("input", function(event) {              /* L'élement indique le parametre "type", important pour la suite    */
-    
     let valueAppareilSearch = event.target.value.toLowerCase();
     const type = "appareil";
     searchTags(type, valueAppareilSearch);
