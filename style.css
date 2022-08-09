@@ -48,7 +48,6 @@ main {
     overflow: hidden;
     width: 80px;
     height: auto;
-    padding: auto;
     margin: 0;
     font-size: 2em;
     border: 1px solid transparent;
@@ -441,9 +440,9 @@ ul {
     #recipe-not-found {
         text-align: center;
     }
-};
+}
 
-@media screen and (min-width: 320px) and (max-width: 425px) {
+@media screen and (max-width: 425px) {
     #to-sort-blocks {
         flex-direction: column;
         align-items: center;
@@ -470,4 +469,4 @@ ul {
         width: 300px;
         margin: 0;
     }
-};
+}

@@ -3,10 +3,11 @@ import{recipes} from "../data/recipes.js";
 let listAppareilsTag = [];                                                          /* Liste des tags des appareils */
 let listUstensilsTag = [];                                                          /* Liste des tags des ustensiles */
 let listIngredientTag = [];                                                         /* Liste des tags des ingrédients */
-let tagUsed = [];                                                                   /* Liste des tags selectionnés et utilisés */
-let result = recipes;                                                               /* Copie les recettes de recipes.js pour pouvoir être modifié ensuite */
+let tagUsed = [];                                                                   /* Liste des tags selectionnés et utilisés */                                                             /* Copie les recettes de recipes.js pour pouvoir être modifié ensuite */
+let result = [];
 let valueSearch = "";                                                               /* Le contenu de la barre de recherche général. Vide au départ */
 const tagsOn = document.getElementById("tags-on");                                  /* Element HTML qui doit contenir les blocs de chaque tag utilisés. Vide au départ */
+let matchFounded = false;
 
 function launchingFactory(recipes){                                                 /* Boucle sur chaque recipes (parametre) pour affichage les differentes recettes */
     document.getElementById("catalogue-recettes").innerHTML = "";
@@ -25,9 +26,9 @@ document.getElementById("form-search").addEventListener("input", function(event)
 function searchByMethod(valueSearch){                                               /* Fonction de recherche principale */
 
     const currentLength = valueSearch.length;
-    
+
     if(currentLength >= 3){
-        let result = [];
+        result = [];
 
         for (let i = 0; i<recipes.length; i++) {
             const recipe = recipes[i];
@@ -43,7 +44,6 @@ function searchByMethod(valueSearch){                                           
              {
                     result.push(recipe);
             }
-            let matchFounded = false;
 
             if(!matchFounded) {
                 for (let i = 0; i<recipe.ingredients.length; i++) {
@@ -59,7 +59,7 @@ function searchByMethod(valueSearch){                                           
                 }
             };
 
-            if (!matchFounded || result.length <=1) {
+            if (!matchFounded || result.length == 0) {
                 document.getElementById("recipe-not-found").style.display = "flex";
             } else if (matchFounded) {
                 document.getElementById("recipe-not-found").style.display = "none";
@@ -77,7 +77,6 @@ function searchByMethod(valueSearch){                                           
     if (currentLength < 3 && tagsOn.childNodes.length === 0){                      /* Permet de reset l'affichage de toute les recettes disponibles */
         launchingFactory(recipes);
         resetTagLists();
-        document.getElementById("recipe-not-found").style.display = "none";
     }
 
     displayTags();
