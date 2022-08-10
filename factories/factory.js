@@ -1,4 +1,4 @@
-function recipesFactory(recipe) {
+function recipesFactory(recipe) {                                               /* Fonction permettant l'affichage de chaque recette sur la page */
 
     const catalogue = document.getElementById("catalogue-recettes");
     const recette = document.createElement("div");
@@ -11,7 +11,7 @@ function recipesFactory(recipe) {
     const time = document.createElement("p");
     const secondary_data = document.createElement("div");
     const ingredients_list = document.createElement("ul");
-    const ingredient = document.createElement("li");
+    
     const instruction = document.createElement("p");
 
     recette.setAttribute("class", "recette");
@@ -29,7 +29,7 @@ function recipesFactory(recipe) {
 
     title_recette.textContent = recipe.name;
     clock.innerHTML = `<i class="far fa-clock"></i>`;
-    time_recette.textContent = recipe.time;
+    time.textContent = recipe.time;
     instruction.textContent = recipe.description;
 
     recette.appendChild(image_recette);
@@ -45,14 +45,21 @@ function recipesFactory(recipe) {
     catalogue.appendChild(recette);
 
     recipe.ingredients.forEach(element => {
-        ingredient.setAttribute("class", "ingredient");
-        ingredient.textContent = `${element.ingredient}: ${element.quantity} ${element.unit?element.unit:""}`;
-        ingredients_list.appendChild(ingredient);
-    });
+        const ingredient = document.createElement("li");
+        const ingredientAsked = document.createElement("p");
+        const ingredientQuantity = document.createElement("p");
 
-    // function createIngredientDisplay() {
-    //     
-    // }
+        ingredientAsked.setAttribute("class", "ingredient-asked");
+        ingredientQuantity.setAttribute("class", "ingredient-quantity");
+        ingredient.setAttribute("class", "ingredient");
+
+        ingredientAsked.textContent = `${element.ingredient}`;
+        ingredientQuantity.textContent = `: ${element.quantity?element.quantity:""} ${element.unit?element.unit:""}`;
+
+        ingredient.appendChild(ingredientAsked);
+        ingredient.appendChild(ingredientQuantity);
+        ingredients_list.appendChild(ingredient);
+     });
 
     return (catalogue);
 }
