@@ -43,9 +43,7 @@ function searchByMethod(valueSearch){                                           
             || descriptionNoAccent.includes(valueSearch))
              {
                     result.push(recipe);
-            }
-
-            if(!matchFounded) {
+            } else {
                 for (let i = 0; i<recipe.ingredients.length; i++) {
                 const ingredient = recipe.ingredients[i].ingredient.toLowerCase();
                 const ingredientNoAccent = recipe.ingredients[i].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -54,10 +52,10 @@ function searchByMethod(valueSearch){                                           
                     || ingredientNoAccent.includes(valueSearch))
                     {
                     result.push(recipe);
-                    matchFounded = true;
                     }
                 }
-            };
+            }
+            
 
             if (result.length == 0) {
                 document.getElementById("recipe-not-found").style.display = "flex";
